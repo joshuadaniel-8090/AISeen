@@ -28,3 +28,5 @@ venv/
 *.log
 npm-debug.log*
 .vercel
+node_modules/
+tsconfig.tsbuildinfo
