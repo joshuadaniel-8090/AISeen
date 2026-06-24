@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { auth } from "@/lib/auth";
 import { getProjectsByUser, getChecksForProject } from "@/lib/db";
 import { getLimits } from "@/lib/plan-gates";

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+export const dynamic = "force-dynamic";
 
 // Simple in-memory rate limiter: 3 audits per IP per 24h
 const ipMap = new Map<string, { count: number; resetAt: number }>();

@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { auth } from "@/lib/auth";
 import { getProjectById, getChecksForProject, getPromptsByProject, getCompetitorsByProject } from "@/lib/db";
 import { getUserById } from "@/lib/db";

@@ -4,6 +4,8 @@ import { getProjectsByUser, createProject } from "@/lib/db";
 import { getUserById } from "@/lib/db";
 import { canAddPrompt, getLimits } from "@/lib/plan-gates";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const session = await auth();
   if (!session?.user?.id) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

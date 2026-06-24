@@ -3,6 +3,8 @@ import { auth } from "@/lib/auth";
 import { stripe, getOrCreateStripeCustomer, getPriceId } from "@/lib/stripe";
 import { getUserById } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: NextRequest) {
   const session = await auth();
   if (!session?.user?.id) {
