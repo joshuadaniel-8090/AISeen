@@ -1,6 +1,16 @@
 import { neon } from "@neondatabase/serverless";
 
-const sql = neon(process.env.DATABASE_URL!);
+let _sql: ReturnType<typeof neon> | null = null;
+
+function getSql(): ReturnType<typeof neon> {
+  if (!_sql) _sql = neon(process.env.DATABASE_URL!);
+  return _sql;
+}
+
+// Wrapper defers neon() initialization to first query (safe for build-time imports).
+// Return typed as Promise<any[]> so callers can index rows without TypeScript overload issues.
+const sql = (strings: TemplateStringsArray, ...values: unknown[]): Promise<any[]> =>
+  getSql()(strings as any, ...values) as Promise<any[]>;
 
 export default sql;
 

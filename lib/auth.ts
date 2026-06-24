@@ -9,22 +9,22 @@ const adapter: Adapter = {
       INSERT INTO users (email) VALUES (${user.email})
       ON CONFLICT (email) DO UPDATE SET email = EXCLUDED.email
       RETURNING id, email, created_at
-    `;
+    ` as any[];
     const u = rows[0];
     return { id: u.id, email: u.email, emailVerified: null };
   },
   async getUser(id) {
-    const rows = await sql`SELECT id, email FROM users WHERE id = ${id} LIMIT 1`;
+    const rows = await sql`SELECT id, email FROM users WHERE id = ${id} LIMIT 1` as any[];
     if (!rows[0]) return null;
     return { id: rows[0].id, email: rows[0].email, emailVerified: null };
   },
   async getUserByEmail(email) {
-    const rows = await sql`SELECT id, email FROM users WHERE email = ${email} LIMIT 1`;
+    const rows = await sql`SELECT id, email FROM users WHERE email = ${email} LIMIT 1` as any[];
     if (!rows[0]) return null;
     return { id: rows[0].id, email: rows[0].email, emailVerified: null };
   },
   async getUserByAccount({ providerAccountId }) {
-    const rows = await sql`SELECT id, email FROM users WHERE email = ${providerAccountId} LIMIT 1`;
+    const rows = await sql`SELECT id, email FROM users WHERE email = ${providerAccountId} LIMIT 1` as any[];
     if (!rows[0]) return null;
     return { id: rows[0].id, email: rows[0].email, emailVerified: null };
   },
@@ -48,7 +48,7 @@ const adapter: Adapter = {
       DELETE FROM verification_tokens
       WHERE identifier = ${identifier} AND token = ${token}
       RETURNING *
-    `;
+    ` as any[];
     if (!rows[0]) return null;
     return { identifier: rows[0].identifier, token: rows[0].token, expires: new Date(rows[0].expires) };
   },

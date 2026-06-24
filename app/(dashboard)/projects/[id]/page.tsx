@@ -16,7 +16,7 @@ export default async function ProjectPage({ params }: { params: { id: string } }
   if (!user) return null;
 
   const project = await getProjectById(params.id);
-  if (!project || project.user_id !== user.id) notFound();
+  if (!project || project.user_id !== user.id) return notFound();
 
   const limits = getLimits(user.plan as "free" | "indie" | "pro");
   const [checks, prompts, competitors] = await Promise.all([
