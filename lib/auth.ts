@@ -32,9 +32,9 @@ const adapter: Adapter = {
     return { id: user.id!, email: user.email!, emailVerified: null };
   },
   async linkAccount() { return; },
-  async createSession(session) { return session; },
+  async createSession(session) { return session as never; },
   async getSessionAndUser() { return null; },
-  async updateSession(session) { return session; },
+  async updateSession(session) { return session as never; },
   async deleteSession() { return; },
   async createVerificationToken(token) {
     await sql`
