@@ -3,7 +3,7 @@ import { stripe } from "@/lib/stripe";
 import { updateUserPlan } from "@/lib/db";
 import Stripe from "stripe";
 
-export const config = { api: { bodyParser: false } };
+export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
