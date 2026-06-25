@@ -60,7 +60,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     Resend({
       apiKey: process.env.RESEND_API_KEY!,
-      from: "AISeen <noreply@aiseen.io>",
+      from: process.env.RESEND_FROM ?? "AISeen <onboarding@resend.dev>",
     }),
   ],
   pages: {
